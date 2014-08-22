@@ -18,10 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
-Add  
-require jquery.ui.all
-require jquery.colorpicke
-to your application.js file 
+Add  to application.js
+//= require jquery-colorpicker
+Add  to application.css
+*= require jquery.colorpicker
 
 ## Contributing
 
