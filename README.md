@@ -23,6 +23,10 @@ Add  to application.js
 Add  to application.css
 *= require jquery.colorpicker
 
+to config/initializers/assets.rb add following(This is for production mode)
+
+Rails.application.config.assets.precompile += %w(  bar-alpha.png bar-opacity.png bar-pointer.png bar.png map-opacity.png map-pointer.png map.png preview-opacity.png ui-colorpicker.png 128/bar-alpha.png 128/bar.png 128/map.png )
+
 ## Contributing
 
 1. Fork it
