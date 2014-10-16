@@ -90,18 +90,18 @@
 
 .ui-colorpicker-map-layer-1,
 .ui-colorpicker-map-layer-2 {
-	background:				url(map.png) no-repeat;
+	background:				image-url("map.png") no-repeat;
 }
 
 .ui-colorpicker-map-layer-alpha {
-	background:				url(map-opacity.png);
+	background:				image-url("map-opacity.png");
 }
 
 .ui-colorpicker-map-pointer {
 	display:				inline-block;
 	width:					15px;
 	height:					15px;
-	background:				url(map-pointer.png) no-repeat;
+	background:				image-url("map-pointer.png") no-repeat;
 }
 
 /* Bar */
@@ -118,22 +118,22 @@
 .ui-colorpicker-bar-layer-2,
 .ui-colorpicker-bar-layer-3,
 .ui-colorpicker-bar-layer-4 {
-	background:				url(bar.png) repeat-x;
+	background:				image-url("bar.png") repeat-x;
 }
 
 .ui-colorpicker-bar-layer-alpha {
-	background:				url(bar-opacity.png);
+	background:				image-url("bar-opacity.png");
 }
 
 .ui-colorpicker-bar-layer-alphabar {
-	background:				url(bar-alpha.png);
+	background:				image-url("bar-alpha.png");
 }
 
 .ui-colorpicker-bar-pointer {
 	display:				inline-block;
 	width:					20px;
 	height:					7px;
-	background:				url(bar-pointer.png) no-repeat;
+	background:				image-url("bar-pointer.png") no-repeat;
 }
 
 /* Preview */
@@ -157,7 +157,7 @@
     width:					50px;
     height:					20px;
     display:				inline-block;
-	background:				url(preview-opacity.png) repeat;
+	background:				image-url("preview-opacity.png") repeat;
 }
 
 /* Inputs */
