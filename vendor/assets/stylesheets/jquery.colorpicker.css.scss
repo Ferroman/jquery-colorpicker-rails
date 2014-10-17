@@ -90,18 +90,18 @@
 
 .ui-colorpicker-map-layer-1,
 .ui-colorpicker-map-layer-2 {
-	background:				asset_url("/assets/map.png") no-repeat;
+	background:				asset_url("map.png") no-repeat;
 }
 
 .ui-colorpicker-map-layer-alpha {
-	background:				asset_url("/assets/map-opacity.png");
+	background:				asset_url("map-opacity.png");
 }
 
 .ui-colorpicker-map-pointer {
 	display:				inline-block;
 	width:					15px;
 	height:					15px;
-	background:				asset_url("/assets/map-pointer.png") no-repeat;
+	background:				asset_url("map-pointer.png") no-repeat;
 }
 
 /* Bar */
@@ -118,22 +118,22 @@
 .ui-colorpicker-bar-layer-2,
 .ui-colorpicker-bar-layer-3,
 .ui-colorpicker-bar-layer-4 {
-	background:				asset_url("/assets/bar.png") repeat-x;
+	background:				asset_url("bar.png") repeat-x;
 }
 
 .ui-colorpicker-bar-layer-alpha {
-	background:				asset_url("/assets/bar-opacity.png");
+	background:				asset_url("bar-opacity.png");
 }
 
 .ui-colorpicker-bar-layer-alphabar {
-	background:				asset_url("/assets/bar-alpha.png");
+	background:				asset_url("bar-alpha.png");
 }
 
 .ui-colorpicker-bar-pointer {
 	display:				inline-block;
 	width:					20px;
 	height:					7px;
-	background:				asset_url("/assets/bar-pointer.png") no-repeat;
+	background:				asset_url("bar-pointer.png") no-repeat;
 }
 
 /* Preview */
@@ -157,7 +157,7 @@
     width:					50px;
     height:					20px;
     display:				inline-block;
-	background:				asset_url("/assets/preview-opacity.png") repeat;
+	background:				asset_url("preview-opacity.png") repeat;
 }
 
 /* Inputs */
