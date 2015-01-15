@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = Jquery::Colorpicker::Rails::VERSION
   gem.authors       = ['Bogdan Frankovskiy']
   gem.email         = ['bfrankovskiy@intelliarts.com']
-  gem.description   = %q{This gem provides jquery.colorpicker driver for your Rails 3 application.}
+  gem.description   = %q{This gem provides vanderlee jquery.colorpicker driver for your Rails 4 application.}
   gem.summary       = %q{Use jquery.colorpicker with rails and jQuery UI}
   gem.homepage      = ""
 

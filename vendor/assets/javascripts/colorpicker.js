@@ -1,13 +1,13 @@
 /*jslint devel: true, bitwise: true, regexp: true, browser: true, confusion: true, unparam: true, eqeq: true, white: true, nomen: true, plusplus: true, maxerr: 50, indent: 4 */
 /*globals jQuery,Color */
 
-/*
+/*!
  * ColorPicker
  *
- * Copyright (c) 2011-2013 Martijn W. van der Lee
+ * Copyright (c) 2011-2014 Martijn W. van der Lee
  * Licensed under the MIT.
- *
- * Full-featured colorpicker for jQueryUI with full theming support.
+ */
+/* Full-featured colorpicker for jQueryUI with full theming support.
  * Most images from jPicker by Christopher T. Tillman.
  * Sourcecode created from scratch by Martijn W. van der Lee.
  */
@@ -49,20 +49,18 @@
 
 		_layoutTable = function(layout, callback) {
 			var bitmap,
-				x,
-				y,
+				x, y,
 				width, height,
 				columns, rows,
 				index,
 				cell,
 				html,
-				w,
-				h,
+				w, h,
 				colspan,
 				walked;
 
 			layout.sort(function(a, b) {
-				if (a.pos[1] == b.pos[1]) {
+				if (a.pos[1] === b.pos[1]) {
 					return a.pos[0] - b.pos[0];
 				}
 				return a.pos[1] - b.pos[1];
@@ -102,7 +100,7 @@
 				html += '<tr>';
                 x = 0;
                 while (x < width) {
-					if (typeof cell !== 'undefined' && x == cell.pos[0] && y == cell.pos[1]) {
+					if (typeof cell !== 'undefined' && x === cell.pos[0] && y === cell.pos[1]) {
 						// Create a "real" cell
 						html += callback(cell, x, y);
 
@@ -119,7 +117,7 @@
 						colspan = 0;
 						walked = false;
 
-						while (x < width && bitmap[x][y] === undefined && (cell === undefined || y < cell.pos[1] || (y == cell.pos[1] && x < cell.pos[0]))) {
+						while (x < width && bitmap[x][y] === undefined && (cell === undefined || y < cell.pos[1] || (y === cell.pos[1] && x < cell.pos[0]))) {
 							if (columns[x] === true) {
 								colspan += 1;
 							}
@@ -170,148 +168,148 @@
 		};
 
 		this.swatches = {
-			'html':	{
-				'black':				{r: 0, g: 0, b: 0},
-				'dimgray':				{r: 0.4117647058823529, g: 0.4117647058823529, b: 0.4117647058823529},
-				'gray':					{r: 0.5019607843137255, g: 0.5019607843137255, b: 0.5019607843137255},
-				'darkgray':				{r: 0.6627450980392157, g: 0.6627450980392157, b: 0.6627450980392157},
-				'silver':				{r: 0.7529411764705882, g: 0.7529411764705882, b: 0.7529411764705882},
-				'lightgrey':			{r: 0.8274509803921568, g: 0.8274509803921568, b: 0.8274509803921568},
-				'gainsboro':			{r: 0.8627450980392157, g: 0.8627450980392157, b: 0.8627450980392157},
-				'whitesmoke':			{r: 0.9607843137254902, g: 0.9607843137254902, b: 0.9607843137254902},
-				'white':				{r: 1, g: 1, b: 1},
-				'rosybrown':			{r: 0.7372549019607844, g: 0.5607843137254902, b: 0.5607843137254902},
-				'indianred':			{r: 0.803921568627451, g: 0.3607843137254902, b: 0.3607843137254902},
-				'brown':				{r: 0.6470588235294118, g: 0.16470588235294117, b: 0.16470588235294117},
-				'firebrick':			{r: 0.6980392156862745, g: 0.13333333333333333, b: 0.13333333333333333},
-				'lightcoral':			{r: 0.9411764705882353, g: 0.5019607843137255, b: 0.5019607843137255},
-				'maroon':				{r: 0.5019607843137255, g: 0, b: 0},
-				'darkred':				{r: 0.5450980392156862, g: 0, b: 0},
-				'red':					{r: 1, g: 0, b: 0},
-				'snow':					{r: 1, g: 0.9803921568627451, b: 0.9803921568627451},
-				'salmon':				{r: 0.9803921568627451, g: 0.5019607843137255, b: 0.4470588235294118},
-				'mistyrose':			{r: 1, g: 0.8941176470588236, b: 0.8823529411764706},
-				'tomato':				{r: 1, g: 0.38823529411764707, b: 0.2784313725490196},
-				'darksalmon':			{r: 0.9137254901960784, g: 0.5882352941176471, b: 0.47843137254901963},
-				'orangered':			{r: 1, g: 0.27058823529411763, b: 0},
-				'coral':				{r: 1, g: 0.4980392156862745, b: 0.3137254901960784},
-				'lightsalmon':			{r: 1, g: 0.6274509803921569, b: 0.47843137254901963},
-				'sienna':				{r: 0.6274509803921569, g: 0.3215686274509804, b: 0.17647058823529413},
-				'seashell':				{r: 1, g: 0.9607843137254902, b: 0.9333333333333333},
-				'chocolate':			{r: 0.8235294117647058, g: 0.4117647058823529, b: 0.11764705882352941},
-				'saddlebrown':			{r: 0.5450980392156862, g: 0.27058823529411763, b: 0.07450980392156863},
-				'sandybrown':			{r: 0.9568627450980393, g: 0.6431372549019608, b: 0.3764705882352941},
-				'peachpuff':			{r: 1, g: 0.8549019607843137, b: 0.7254901960784313},
-				'peru':					{r: 0.803921568627451, g: 0.5215686274509804, b: 0.24705882352941178},
-				'linen':				{r: 0.9803921568627451, g: 0.9411764705882353, b: 0.9019607843137255},
-				'darkorange':			{r: 1, g: 0.5490196078431373, b: 0},
-				'bisque':				{r: 1, g: 0.8941176470588236, b: 0.7686274509803922},
-				'burlywood':			{r: 0.8705882352941177, g: 0.7215686274509804, b: 0.5294117647058824},
-				'tan':					{r: 0.8235294117647058, g: 0.7058823529411765, b: 0.5490196078431373},
-				'antiquewhite':			{r: 0.9803921568627451, g: 0.9215686274509803, b: 0.8431372549019608},
-				'navajowhite':			{r: 1, g: 0.8705882352941177, b: 0.6784313725490196},
-				'blanchedalmond':		{r: 1, g: 0.9215686274509803, b: 0.803921568627451},
-				'papayawhip':			{r: 1, g: 0.9372549019607843, b: 0.8352941176470589},
-				'orange':				{r: 1, g: 0.6470588235294118, b: 0},
-				'moccasin':				{r: 1, g: 0.8941176470588236, b: 0.7098039215686275},
-				'wheat':				{r: 0.9607843137254902, g: 0.8705882352941177, b: 0.7019607843137254},
-				'oldlace':				{r: 0.9921568627450981, g: 0.9607843137254902, b: 0.9019607843137255},
-				'floralwhite':			{r: 1, g: 0.9803921568627451, b: 0.9411764705882353},
-				'goldenrod':			{r: 0.8549019607843137, g: 0.6470588235294118, b: 0.12549019607843137},
-				'darkgoldenrod':		{r: 0.7215686274509804, g: 0.5254901960784314, b: 0.043137254901960784},
-				'cornsilk':				{r: 1, g: 0.9725490196078431, b: 0.8627450980392157},
-				'gold':					{r: 1, g: 0.8431372549019608, b: 0},
-				'palegoldenrod':		{r: 0.9333333333333333, g: 0.9098039215686274, b: 0.6666666666666666},
-				'khaki':				{r: 0.9411764705882353, g: 0.9019607843137255, b: 0.5490196078431373},
-				'lemonchiffon':			{r: 1, g: 0.9803921568627451, b: 0.803921568627451},
-				'darkkhaki':			{r: 0.7411764705882353, g: 0.7176470588235294, b: 0.4196078431372549},
-				'beige':				{r: 0.9607843137254902, g: 0.9607843137254902, b: 0.8627450980392157},
-				'lightgoldenrodyellow':	{r: 0.9803921568627451, g: 0.9803921568627451, b: 0.8235294117647058},
-				'olive':				{r: 0.5019607843137255, g: 0.5019607843137255, b: 0},
-				'yellow':				{r: 1, g: 1, b: 0},
-				'lightyellow':			{r: 1, g: 1, b: 0.8784313725490196},
-				'ivory':				{r: 1, g: 1, b: 0.9411764705882353},
-				'olivedrab':			{r: 0.4196078431372549, g: 0.5568627450980392, b: 0.13725490196078433},
-				'yellowgreen':			{r: 0.6039215686274509, g: 0.803921568627451, b: 0.19607843137254902},
-				'darkolivegreen':		{r: 0.3333333333333333, g: 0.4196078431372549, b: 0.1843137254901961},
-				'greenyellow':			{r: 0.6784313725490196, g: 1, b: 0.1843137254901961},
-				'lawngreen':			{r: 0.48627450980392156, g: 0.9882352941176471, b: 0},
-				'chartreuse':			{r: 0.4980392156862745, g: 1, b: 0},
-				'darkseagreen':			{r: 0.5607843137254902, g: 0.7372549019607844, b: 0.5607843137254902},
-				'forestgreen':			{r: 0.13333333333333333, g: 0.5450980392156862, b: 0.13333333333333333},
-				'limegreen':			{r: 0.19607843137254902, g: 0.803921568627451, b: 0.19607843137254902},
-				'lightgreen':			{r: 0.5647058823529412, g: 0.9333333333333333, b: 0.5647058823529412},
-				'palegreen':			{r: 0.596078431372549, g: 0.984313725490196, b: 0.596078431372549},
-				'darkgreen':			{r: 0, g: 0.39215686274509803, b: 0},
-				'green':				{r: 0, g: 0.5019607843137255, b: 0},
-				'lime':					{r: 0, g: 1, b: 0},
-				'honeydew':				{r: 0.9411764705882353, g: 1, b: 0.9411764705882353},
-				'mediumseagreen':		{r: 0.23529411764705882, g: 0.7019607843137254, b: 0.44313725490196076},
-				'seagreen':				{r: 0.1803921568627451, g: 0.5450980392156862, b: 0.3411764705882353},
-				'springgreen':			{r: 0, g: 1, b: 0.4980392156862745},
-				'mintcream':			{r: 0.9607843137254902, g: 1, b: 0.9803921568627451},
-				'mediumspringgreen':	{r: 0, g: 0.9803921568627451, b: 0.6039215686274509},
-				'mediumaquamarine':		{r: 0.4, g: 0.803921568627451, b: 0.6666666666666666},
-				'aquamarine':			{r: 0.4980392156862745, g: 1, b: 0.8313725490196079},
-				'turquoise':			{r: 0.25098039215686274, g: 0.8784313725490196, b: 0.8156862745098039},
-				'lightseagreen':		{r: 0.12549019607843137, g: 0.6980392156862745, b: 0.6666666666666666},
-				'mediumturquoise':		{r: 0.2823529411764706, g: 0.8196078431372549, b: 0.8},
-				'darkslategray':		{r: 0.1843137254901961, g: 0.30980392156862746, b: 0.30980392156862746},
-				'paleturquoise':		{r: 0.6862745098039216, g: 0.9333333333333333, b: 0.9333333333333333},
-				'teal':					{r: 0, g: 0.5019607843137255, b: 0.5019607843137255},
-				'darkcyan':				{r: 0, g: 0.5450980392156862, b: 0.5450980392156862},
-				'darkturquoise':		{r: 0, g: 0.807843137254902, b: 0.8196078431372549},
-				'aqua':					{r: 0, g: 1, b: 1},
-				'cyan':					{r: 0, g: 1, b: 1},
-				'lightcyan':			{r: 0.8784313725490196, g: 1, b: 1},
-				'azure':				{r: 0.9411764705882353, g: 1, b: 1},
-				'cadetblue':			{r: 0.37254901960784315, g: 0.6196078431372549, b: 0.6274509803921569},
-				'powderblue':			{r: 0.6901960784313725, g: 0.8784313725490196, b: 0.9019607843137255},
-				'lightblue':			{r: 0.6784313725490196, g: 0.8470588235294118, b: 0.9019607843137255},
-				'deepskyblue':			{r: 0, g: 0.7490196078431373, b: 1},
-				'skyblue':				{r: 0.5294117647058824, g: 0.807843137254902, b: 0.9215686274509803},
-				'lightskyblue':			{r: 0.5294117647058824, g: 0.807843137254902, b: 0.9803921568627451},
-				'steelblue':			{r: 0.27450980392156865, g: 0.5098039215686274, b: 0.7058823529411765},
-				'aliceblue':			{r: 0.9411764705882353, g: 0.9725490196078431, b: 1},
-				'dodgerblue':			{r: 0.11764705882352941, g: 0.5647058823529412, b: 1},
-				'slategray':			{r: 0.4392156862745098, g: 0.5019607843137255, b: 0.5647058823529412},
-				'lightslategray':		{r: 0.4666666666666667, g: 0.5333333333333333, b: 0.6},
-				'lightsteelblue':		{r: 0.6901960784313725, g: 0.7686274509803922, b: 0.8705882352941177},
-				'cornflowerblue':		{r: 0.39215686274509803, g: 0.5843137254901961, b: 0.9294117647058824},
-				'royalblue':			{r: 0.2549019607843137, g: 0.4117647058823529, b: 0.8823529411764706},
-				'midnightblue':			{r: 0.09803921568627451, g: 0.09803921568627451, b: 0.4392156862745098},
-				'lavender':				{r: 0.9019607843137255, g: 0.9019607843137255, b: 0.9803921568627451},
-				'navy':					{r: 0, g: 0, b: 0.5019607843137255},
-				'darkblue':				{r: 0, g: 0, b: 0.5450980392156862},
-				'mediumblue':			{r: 0, g: 0, b: 0.803921568627451},
-				'blue':					{r: 0, g: 0, b: 1},
-				'ghostwhite':			{r: 0.9725490196078431, g: 0.9725490196078431, b: 1},
-				'darkslateblue':		{r: 0.2823529411764706, g: 0.23921568627450981, b: 0.5450980392156862},
-				'slateblue':			{r: 0.41568627450980394, g: 0.35294117647058826, b: 0.803921568627451},
-				'mediumslateblue':		{r: 0.4823529411764706, g: 0.40784313725490196, b: 0.9333333333333333},
-				'mediumpurple':			{r: 0.5764705882352941, g: 0.4392156862745098, b: 0.8588235294117647},
-				'blueviolet':			{r: 0.5411764705882353, g: 0.16862745098039217, b: 0.8862745098039215},
-				'indigo':				{r: 0.29411764705882354, g: 0, b: 0.5098039215686274},
-				'darkorchid':			{r: 0.6, g: 0.19607843137254902, b: 0.8},
-				'darkviolet':			{r: 0.5803921568627451, g: 0, b: 0.8274509803921568},
-				'mediumorchid':			{r: 0.7294117647058823, g: 0.3333333333333333, b: 0.8274509803921568},
-				'thistle':				{r: 0.8470588235294118, g: 0.7490196078431373, b: 0.8470588235294118},
-				'plum':					{r: 0.8666666666666667, g: 0.6274509803921569, b: 0.8666666666666667},
-				'violet':				{r: 0.9333333333333333, g: 0.5098039215686274, b: 0.9333333333333333},
-				'purple':				{r: 0.5019607843137255, g: 0, b: 0.5019607843137255},
-				'darkmagenta':			{r: 0.5450980392156862, g: 0, b: 0.5450980392156862},
-				'magenta':				{r: 1, g: 0, b: 1},
-				'fuchsia':				{r: 1, g: 0, b: 1},
-				'orchid':				{r: 0.8549019607843137, g: 0.4392156862745098, b: 0.8392156862745098},
-				'mediumvioletred':		{r: 0.7803921568627451, g: 0.08235294117647059, b: 0.5215686274509804},
-				'deeppink':				{r: 1, g: 0.0784313725490196, b: 0.5764705882352941},
-				'hotpink':				{r: 1, g: 0.4117647058823529, b: 0.7058823529411765},
-				'palevioletred':		{r: 0.8588235294117647, g: 0.4392156862745098, b: 0.5764705882352941},
-				'lavenderblush':		{r: 1, g: 0.9411764705882353, b: 0.9607843137254902},
-				'crimson':				{r: 0.8627450980392157, g: 0.0784313725490196, b: 0.23529411764705882},
-				'pink':					{r: 1, g: 0.7529411764705882, b: 0.796078431372549},
-				'lightpink':			{r: 1, g: 0.7137254901960784, b: 0.7568627450980392}
-			}
+			'html':	[
+				{name: 'black',					r: 0, g: 0, b: 0},
+				{name: 'dimgray',				r: 0.4117647058823529, g: 0.4117647058823529, b: 0.4117647058823529},
+				{name: 'gray',					r: 0.5019607843137255, g: 0.5019607843137255, b: 0.5019607843137255},
+				{name: 'darkgray',				r: 0.6627450980392157, g: 0.6627450980392157, b: 0.6627450980392157},
+				{name: 'silver',				r: 0.7529411764705882, g: 0.7529411764705882, b: 0.7529411764705882},
+				{name: 'lightgrey',				r: 0.8274509803921568, g: 0.8274509803921568, b: 0.8274509803921568},
+				{name: 'gainsboro',				r: 0.8627450980392157, g: 0.8627450980392157, b: 0.8627450980392157},
+				{name: 'whitesmoke',			r: 0.9607843137254902, g: 0.9607843137254902, b: 0.9607843137254902},
+				{name: 'white',					r: 1, g: 1, b: 1},
+				{name: 'rosybrown',				r: 0.7372549019607844, g: 0.5607843137254902, b: 0.5607843137254902},
+				{name: 'indianred',				r: 0.803921568627451, g: 0.3607843137254902, b: 0.3607843137254902},
+				{name: 'brown',					r: 0.6470588235294118, g: 0.16470588235294117, b: 0.16470588235294117},
+				{name: 'firebrick',				r: 0.6980392156862745, g: 0.13333333333333333, b: 0.13333333333333333},
+				{name: 'lightcoral',			r: 0.9411764705882353, g: 0.5019607843137255, b: 0.5019607843137255},
+				{name: 'maroon',				r: 0.5019607843137255, g: 0, b: 0},
+				{name: 'darkred',				r: 0.5450980392156862, g: 0, b: 0},
+				{name: 'red',					r: 1, g: 0, b: 0},
+				{name: 'snow',					r: 1, g: 0.9803921568627451, b: 0.9803921568627451},
+				{name: 'salmon',				r: 0.9803921568627451, g: 0.5019607843137255, b: 0.4470588235294118},
+				{name: 'mistyrose',				r: 1, g: 0.8941176470588236, b: 0.8823529411764706},
+				{name: 'tomato',				r: 1, g: 0.38823529411764707, b: 0.2784313725490196},
+				{name: 'darksalmon',			r: 0.9137254901960784, g: 0.5882352941176471, b: 0.47843137254901963},
+				{name: 'orangered',				r: 1, g: 0.27058823529411763, b: 0},
+				{name: 'coral',					r: 1, g: 0.4980392156862745, b: 0.3137254901960784},
+				{name: 'lightsalmon',			r: 1, g: 0.6274509803921569, b: 0.47843137254901963},
+				{name: 'sienna',				r: 0.6274509803921569, g: 0.3215686274509804, b: 0.17647058823529413},
+				{name: 'seashell',				r: 1, g: 0.9607843137254902, b: 0.9333333333333333},
+				{name: 'chocolate',				r: 0.8235294117647058, g: 0.4117647058823529, b: 0.11764705882352941},
+				{name: 'saddlebrown',			r: 0.5450980392156862, g: 0.27058823529411763, b: 0.07450980392156863},
+				{name: 'sandybrown',			r: 0.9568627450980393, g: 0.6431372549019608, b: 0.3764705882352941},
+				{name: 'peachpuff',				r: 1, g: 0.8549019607843137, b: 0.7254901960784313},
+				{name: 'peru',					r: 0.803921568627451, g: 0.5215686274509804, b: 0.24705882352941178},
+				{name: 'linen',					r: 0.9803921568627451, g: 0.9411764705882353, b: 0.9019607843137255},
+				{name: 'darkorange',			r: 1, g: 0.5490196078431373, b: 0},
+				{name: 'bisque',				r: 1, g: 0.8941176470588236, b: 0.7686274509803922},
+				{name: 'burlywood',				r: 0.8705882352941177, g: 0.7215686274509804, b: 0.5294117647058824},
+				{name: 'tan',					r: 0.8235294117647058, g: 0.7058823529411765, b: 0.5490196078431373},
+				{name: 'antiquewhite',			r: 0.9803921568627451, g: 0.9215686274509803, b: 0.8431372549019608},
+				{name: 'navajowhite',			r: 1, g: 0.8705882352941177, b: 0.6784313725490196},
+				{name: 'blanchedalmond',		r: 1, g: 0.9215686274509803, b: 0.803921568627451},
+				{name: 'papayawhip',			r: 1, g: 0.9372549019607843, b: 0.8352941176470589},
+				{name: 'orange',				r: 1, g: 0.6470588235294118, b: 0},
+				{name: 'moccasin',				r: 1, g: 0.8941176470588236, b: 0.7098039215686275},
+				{name: 'wheat',					r: 0.9607843137254902, g: 0.8705882352941177, b: 0.7019607843137254},
+				{name: 'oldlace',				r: 0.9921568627450981, g: 0.9607843137254902, b: 0.9019607843137255},
+				{name: 'floralwhite',			r: 1, g: 0.9803921568627451, b: 0.9411764705882353},
+				{name: 'goldenrod',				r: 0.8549019607843137, g: 0.6470588235294118, b: 0.12549019607843137},
+				{name: 'darkgoldenrod',			r: 0.7215686274509804, g: 0.5254901960784314, b: 0.043137254901960784},
+				{name: 'cornsilk',				r: 1, g: 0.9725490196078431, b: 0.8627450980392157},
+				{name: 'gold',					r: 1, g: 0.8431372549019608, b: 0},
+				{name: 'palegoldenrod',			r: 0.9333333333333333, g: 0.9098039215686274, b: 0.6666666666666666},
+				{name: 'khaki',					r: 0.9411764705882353, g: 0.9019607843137255, b: 0.5490196078431373},
+				{name: 'lemonchiffon',			r: 1, g: 0.9803921568627451, b: 0.803921568627451},
+				{name: 'darkkhaki',				r: 0.7411764705882353, g: 0.7176470588235294, b: 0.4196078431372549},
+				{name: 'beige',					r: 0.9607843137254902, g: 0.9607843137254902, b: 0.8627450980392157},
+				{name: 'lightgoldenrodyellow',	r: 0.9803921568627451, g: 0.9803921568627451, b: 0.8235294117647058},
+				{name: 'olive',					r: 0.5019607843137255, g: 0.5019607843137255, b: 0},
+				{name: 'yellow',				r: 1, g: 1, b: 0},
+				{name: 'lightyellow',			r: 1, g: 1, b: 0.8784313725490196},
+				{name: 'ivory',					r: 1, g: 1, b: 0.9411764705882353},
+				{name: 'olivedrab',				r: 0.4196078431372549, g: 0.5568627450980392, b: 0.13725490196078433},
+				{name: 'yellowgreen',			r: 0.6039215686274509, g: 0.803921568627451, b: 0.19607843137254902},
+				{name: 'darkolivegreen',		r: 0.3333333333333333, g: 0.4196078431372549, b: 0.1843137254901961},
+				{name: 'greenyellow',			r: 0.6784313725490196, g: 1, b: 0.1843137254901961},
+				{name: 'lawngreen',				r: 0.48627450980392156, g: 0.9882352941176471, b: 0},
+				{name: 'chartreuse',			r: 0.4980392156862745, g: 1, b: 0},
+				{name: 'darkseagreen',			r: 0.5607843137254902, g: 0.7372549019607844, b: 0.5607843137254902},
+				{name: 'forestgreen',			r: 0.13333333333333333, g: 0.5450980392156862, b: 0.13333333333333333},
+				{name: 'limegreen',				r: 0.19607843137254902, g: 0.803921568627451, b: 0.19607843137254902},
+				{name: 'lightgreen',			r: 0.5647058823529412, g: 0.9333333333333333, b: 0.5647058823529412},
+				{name: 'palegreen',				r: 0.596078431372549, g: 0.984313725490196, b: 0.596078431372549},
+				{name: 'darkgreen',				r: 0, g: 0.39215686274509803, b: 0},
+				{name: 'green',					r: 0, g: 0.5019607843137255, b: 0},
+				{name: 'lime',					r: 0, g: 1, b: 0},
+				{name: 'honeydew',				r: 0.9411764705882353, g: 1, b: 0.9411764705882353},
+				{name: 'mediumseagreen',		r: 0.23529411764705882, g: 0.7019607843137254, b: 0.44313725490196076},
+				{name: 'seagreen',				r: 0.1803921568627451, g: 0.5450980392156862, b: 0.3411764705882353},
+				{name: 'springgreen',			r: 0, g: 1, b: 0.4980392156862745},
+				{name: 'mintcream',				r: 0.9607843137254902, g: 1, b: 0.9803921568627451},
+				{name: 'mediumspringgreen',		r: 0, g: 0.9803921568627451, b: 0.6039215686274509},
+				{name: 'mediumaquamarine',		r: 0.4, g: 0.803921568627451, b: 0.6666666666666666},
+				{name: 'aquamarine',			r: 0.4980392156862745, g: 1, b: 0.8313725490196079},
+				{name: 'turquoise',				r: 0.25098039215686274, g: 0.8784313725490196, b: 0.8156862745098039},
+				{name: 'lightseagreen',			r: 0.12549019607843137, g: 0.6980392156862745, b: 0.6666666666666666},
+				{name: 'mediumturquoise',		r: 0.2823529411764706, g: 0.8196078431372549, b: 0.8},
+				{name: 'darkslategray',			r: 0.1843137254901961, g: 0.30980392156862746, b: 0.30980392156862746},
+				{name: 'paleturquoise',			r: 0.6862745098039216, g: 0.9333333333333333, b: 0.9333333333333333},
+				{name: 'teal',					r: 0, g: 0.5019607843137255, b: 0.5019607843137255},
+				{name: 'darkcyan',				r: 0, g: 0.5450980392156862, b: 0.5450980392156862},
+				{name: 'darkturquoise',			r: 0, g: 0.807843137254902, b: 0.8196078431372549},
+				{name: 'aqua',					r: 0, g: 1, b: 1},
+				{name: 'cyan',					r: 0, g: 1, b: 1},
+				{name: 'lightcyan',				r: 0.8784313725490196, g: 1, b: 1},
+				{name: 'azure',					r: 0.9411764705882353, g: 1, b: 1},
+				{name: 'cadetblue',				r: 0.37254901960784315, g: 0.6196078431372549, b: 0.6274509803921569},
+				{name: 'powderblue',			r: 0.6901960784313725, g: 0.8784313725490196, b: 0.9019607843137255},
+				{name: 'lightblue',				r: 0.6784313725490196, g: 0.8470588235294118, b: 0.9019607843137255},
+				{name: 'deepskyblue',			r: 0, g: 0.7490196078431373, b: 1},
+				{name: 'skyblue',				r: 0.5294117647058824, g: 0.807843137254902, b: 0.9215686274509803},
+				{name: 'lightskyblue',			r: 0.5294117647058824, g: 0.807843137254902, b: 0.9803921568627451},
+				{name: 'steelblue',				r: 0.27450980392156865, g: 0.5098039215686274, b: 0.7058823529411765},
+				{name: 'aliceblue',				r: 0.9411764705882353, g: 0.9725490196078431, b: 1},
+				{name: 'dodgerblue',			r: 0.11764705882352941, g: 0.5647058823529412, b: 1},
+				{name: 'slategray',				r: 0.4392156862745098, g: 0.5019607843137255, b: 0.5647058823529412},
+				{name: 'lightslategray',		r: 0.4666666666666667, g: 0.5333333333333333, b: 0.6},
+				{name: 'lightsteelblue',		r: 0.6901960784313725, g: 0.7686274509803922, b: 0.8705882352941177},
+				{name: 'cornflowerblue',		r: 0.39215686274509803, g: 0.5843137254901961, b: 0.9294117647058824},
+				{name: 'royalblue',				r: 0.2549019607843137, g: 0.4117647058823529, b: 0.8823529411764706},
+				{name: 'midnightblue',			r: 0.09803921568627451, g: 0.09803921568627451, b: 0.4392156862745098},
+				{name: 'lavender',				r: 0.9019607843137255, g: 0.9019607843137255, b: 0.9803921568627451},
+				{name: 'navy',					r: 0, g: 0, b: 0.5019607843137255},
+				{name: 'darkblue',				r: 0, g: 0, b: 0.5450980392156862},
+				{name: 'mediumblue',			r: 0, g: 0, b: 0.803921568627451},
+				{name: 'blue',					r: 0, g: 0, b: 1},
+				{name: 'ghostwhite',			r: 0.9725490196078431, g: 0.9725490196078431, b: 1},
+				{name: 'darkslateblue',			r: 0.2823529411764706, g: 0.23921568627450981, b: 0.5450980392156862},
+				{name: 'slateblue',				r: 0.41568627450980394, g: 0.35294117647058826, b: 0.803921568627451},
+				{name: 'mediumslateblue',		r: 0.4823529411764706, g: 0.40784313725490196, b: 0.9333333333333333},
+				{name: 'mediumpurple',			r: 0.5764705882352941, g: 0.4392156862745098, b: 0.8588235294117647},
+				{name: 'blueviolet',			r: 0.5411764705882353, g: 0.16862745098039217, b: 0.8862745098039215},
+				{name: 'indigo',				r: 0.29411764705882354, g: 0, b: 0.5098039215686274},
+				{name: 'darkorchid',			r: 0.6, g: 0.19607843137254902, b: 0.8},
+				{name: 'darkviolet',			r: 0.5803921568627451, g: 0, b: 0.8274509803921568},
+				{name: 'mediumorchid',			r: 0.7294117647058823, g: 0.3333333333333333, b: 0.8274509803921568},
+				{name: 'thistle',				r: 0.8470588235294118, g: 0.7490196078431373, b: 0.8470588235294118},
+				{name: 'plum',					r: 0.8666666666666667, g: 0.6274509803921569, b: 0.8666666666666667},
+				{name: 'violet',				r: 0.9333333333333333, g: 0.5098039215686274, b: 0.9333333333333333},
+				{name: 'purple',				r: 0.5019607843137255, g: 0, b: 0.5019607843137255},
+				{name: 'darkmagenta',			r: 0.5450980392156862, g: 0, b: 0.5450980392156862},
+				{name: 'magenta',				r: 1, g: 0, b: 1},
+				{name: 'fuchsia',				r: 1, g: 0, b: 1},
+				{name: 'orchid',				r: 0.8549019607843137, g: 0.4392156862745098, b: 0.8392156862745098},
+				{name: 'mediumvioletred',		r: 0.7803921568627451, g: 0.08235294117647059, b: 0.5215686274509804},
+				{name: 'deeppink',				r: 1, g: 0.0784313725490196, b: 0.5764705882352941},
+				{name: 'hotpink',				r: 1, g: 0.4117647058823529, b: 0.7058823529411765},
+				{name: 'palevioletred',			r: 0.8588235294117647, g: 0.4392156862745098, b: 0.5764705882352941},
+				{name: 'lavenderblush',			r: 1, g: 0.9411764705882353, b: 0.9607843137254902},
+				{name: 'crimson',				r: 0.8627450980392157, g: 0.0784313725490196, b: 0.23529411764705882},
+				{name: 'pink',					r: 1, g: 0.7529411764705882, b: 0.796078431372549},
+				{name: 'lightpink',				r: 1, g: 0.7137254901960784, b: 0.7568627450980392}
+			]
 		};
 
 		this.writers = {
@@ -331,13 +329,31 @@
 								g = Math.floor(rgb.g * 255),
 								b = Math.floor(rgb.b * 255);
 
-							if (((r >>> 4) == (r &= 0xf))
-							 && ((g >>> 4) == (g &= 0xf))
-							 && ((b >>> 4) == (b &= 0xf))) {
+							if (((r >>> 4) === (r &= 0xf))
+							 && ((g >>> 4) === (g &= 0xf))
+							 && ((b >>> 4) === (b &= 0xf))) {
 								return r.toString(16)+g.toString(16)+b.toString(16);
 							}
 							return false;
 						}
+		,	'#HEXA':	function(color, that) {
+							return that._formatColor('#rxgxbxax', color);
+						}						
+		,	'#HEXA4':	function(color, that) {
+							var hexa4 = $.colorpicker.writers.HEXA4(color, that);
+							return hexa4 === false? false : '#'+hexa4;
+						}						
+		,	'HEXA':	function(color, that) {
+							return that._formatColor('rxgxbxax', color);
+						}		
+		,	'HEXA4':		function(color, that) {
+							var a = Math.floor(color.getAlpha() * 255);
+						
+							if ((a >>> 4) === (a &= 0xf)) {
+								return $.colorpicker.writers.HEX3(color, that)+a.toString(16);
+							}
+							return false;
+						}						
 		,	'RGB':		function(color, that) {
 							return color.getAlpha() >= 1
 									? that._formatColor('rgb(rd,gd,bd)', color)
@@ -373,14 +389,14 @@
 		,	'NAME':		function(color, that) {
 							return that._closestName(color);
 						}
-		,	'EXACT':	function(color, that) {		//@todo experimental. Implement a good fallback list
+		,	'EXACT':	function(color, that) {		// @todo experimental. Implement a good fallback list
 							return that._exactName(color);
 						}
 		};
 
 		this.parsers = {
 			'':			function(color) {
-				            if (color == '') {
+				            if (color === '') {
 								return new $.colorpicker.Color();
 							}
 						}
@@ -444,9 +460,9 @@
 							var m = /^#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])$/.exec(color);
 							if (m) {
 								return new $.colorpicker.Color(
-								   parseInt(m[1] + m[1], 16) / 255,
-								   parseInt(m[2] + m[2], 16) / 255,
-								   parseInt(m[3] + m[3], 16) / 255
+								   parseInt(String(m[1]) + m[1], 16) / 255,
+								   parseInt(String(m[2]) + m[2], 16) / 255,
+								   parseInt(String(m[3]) + m[3], 16) / 255
 								);
 							}
 						}
@@ -464,9 +480,53 @@
 							var m = /^([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])$/.exec(color);
 							if (m) {
 								return new $.colorpicker.Color(
-								   parseInt(m[1] + m[1], 16) / 255,
-								   parseInt(m[2] + m[2], 16) / 255,
-								   parseInt(m[3] + m[3], 16) / 255
+								   parseInt(String(m[1]) + m[1], 16) / 255,
+								   parseInt(String(m[2]) + m[2], 16) / 255,
+								   parseInt(String(m[3]) + m[3], 16) / 255
+								);
+							}
+						}
+		,	'#HEXA':	function(color) {
+							var m = /^#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})$/.exec(color);
+							if (m) {
+								return new $.colorpicker.Color(
+									parseInt(m[1], 16) / 255,
+									parseInt(m[2], 16) / 255,
+									parseInt(m[3], 16) / 255,
+									parseInt(m[4], 16) / 255
+								);
+							}
+						}
+		,	'#HEXA4':	function(color) {
+							var m = /^#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])$/.exec(color);
+							if (m) {
+								return new $.colorpicker.Color(
+								   parseInt(String(m[1]) + m[1], 16) / 255,
+								   parseInt(String(m[2]) + m[2], 16) / 255,
+								   parseInt(String(m[3]) + m[3], 16) / 255,
+								   parseInt(String(m[4]) + m[4], 16) / 255
+								);
+							}
+						}
+		,	'HEXA':		function(color) {
+							var m = /^([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})$/.exec(color);
+							if (m) {
+								return new $.colorpicker.Color(
+									parseInt(m[1], 16) / 255,
+									parseInt(m[2], 16) / 255,
+									parseInt(m[3], 16) / 255,
+									parseInt(m[4], 16) / 255
+								);
+							}
+						}
+		,	'HEXA4':	function(color) {
+							var m = /^([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])$/.exec(color);
+							if (m) {
+								return new $.colorpicker.Color(
+								   parseInt(String(m[1]) + m[1], 16) / 255,
+								   parseInt(String(m[2]) + m[2], 16) / 255,
+								   parseInt(String(m[3]) + m[3], 16) / 255,
+								   parseInt(String(m[4]) + m[4], 16) / 255
 								);
 							}
 						}
@@ -477,7 +537,7 @@
 			'popup':		['map', 'bar', 'hex', 'hsv', 'rgb', 'alpha', 'preview', 'footer'],
 			'draggable':	['header', 'map', 'bar', 'hex', 'hsv', 'rgb', 'alpha', 'preview', 'footer'],
 			'inline':		['map', 'bar', 'hex', 'hsv', 'rgb', 'alpha', 'preview']
-		},
+		};
 
 		this.limits = {
 			'websafe':		function(color) {
@@ -493,7 +553,7 @@
 								var swatch = that._getSwatch(that._closestName(color));
 								color.setRGB(swatch.r, swatch.g, swatch.b);
 							}
-		},
+		};
 
 		this.parts = {
 			header: function (inst) {
@@ -523,9 +583,13 @@
 					});
 
 					if (!inst.inline && inst.options.draggable) {
-						inst.dialog.draggable({
-							handle: e
-						});
+						var draggableOptions = {
+							handle: e,
+						}
+						if (inst.options.containment) {
+							draggableOptions.containment = inst.options.containment;
+						}
+						inst.dialog.draggable(draggableOptions);
 					}
 				};
 			},
@@ -618,7 +682,7 @@
 				};
 
 				_html = function () {
-					var html = '<div class="ui-colorpicker-map ui-colorpicker-border">'
+					var html = '<div class="ui-colorpicker-map ui-colorpicker-map-'+(inst.options.part.map.size || 256)+' ui-colorpicker-border">'
 							+ '<span class="ui-colorpicker-map-layer-1">&nbsp;</span>'
 							+ '<span class="ui-colorpicker-map-layer-2">&nbsp;</span>'
 							+ (inst.options.alpha ? '<span class="ui-colorpicker-map-layer-alpha">&nbsp;</span>' : '')
@@ -627,6 +691,8 @@
 				};
 
 				this.update = function () {
+					var step = ((inst.options.part.map.size || 256) * 65 / 64);
+
 					switch (inst.mode) {
 					case 'h':
 						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 0', 'opacity': ''}).show();
@@ -635,29 +701,29 @@
 
 					case 's':
 					case 'a':
-						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 -260px', 'opacity': ''}).show();
-						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 -520px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 '+(-step)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 '+(-step*2)+'px', 'opacity': ''}).show();
 						break;
 
 					case 'v':
 						$(e).css('background-color', 'black');
-						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 -780px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 '+(-step*3)+'px', 'opacity': ''}).show();
 						$('.ui-colorpicker-map-layer-2', e).hide();
 						break;
 
 					case 'r':
-						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 -1040px', 'opacity': ''}).show();
-						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 -1300px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 '+(-step*4)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 '+(-step*5)+'px', 'opacity': ''}).show();
 						break;
 
 					case 'g':
-						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 -1560px', 'opacity': ''}).show();
-						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 -1820px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 '+(-step*6)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 '+(-step*7)+'px', 'opacity': ''}).show();
 						break;
 
 					case 'b':
-						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 -2080px', 'opacity': ''}).show();
-						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 -2340px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-1', e).css({'background-position': '0 '+(-step*8)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-map-layer-2', e).css({'background-position': '0 '+(-step*9)+'px', 'opacity': ''}).show();
 						break;
 					}
 					that.repaint();
@@ -672,7 +738,7 @@
 					case 'h':
 						x = inst.color.getHSV().s * div.width();
 						y = (1 - inst.color.getHSV().v) * div.width();
-						$(e).css('background-color', inst.color.copy().normalize().toCSS());
+						$(e).css('background-color', inst.color.copy().setHSV(null, 1, 1).toCSS());
 						break;
 
 					case 's':
@@ -810,7 +876,7 @@
 				};
 
 				_html = function () {
-					var html = '<div class="ui-colorpicker-bar ui-colorpicker-border">'
+					var html = '<div class="ui-colorpicker-bar ui-colorpicker-bar-'+(inst.options.part.bar.size || 256)+'  ui-colorpicker-border">'
 							+ '<span class="ui-colorpicker-bar-layer-1">&nbsp;</span>'
 							+ '<span class="ui-colorpicker-bar-layer-2">&nbsp;</span>'
 							+ '<span class="ui-colorpicker-bar-layer-3">&nbsp;</span>'
@@ -827,6 +893,8 @@
 				};
 
 				this.update = function () {
+					var step = ((inst.options.part.bar.size || 256) * 65 / 64);
+
 					switch (inst.mode) {
 					case 'h':
 					case 's':
@@ -853,38 +921,38 @@
 						break;
 
 					case 's':
-						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 -260px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 -520px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 '+(-step)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 '+(-step*2)+'px', 'opacity': ''}).show();
 						$('.ui-colorpicker-bar-layer-3', e).hide();
 						$('.ui-colorpicker-bar-layer-4', e).hide();
 						break;
 
 					case 'v':
-						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 -520px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 '+(-step*2)+'px', 'opacity': ''}).show();
 						$('.ui-colorpicker-bar-layer-2', e).hide();
 						$('.ui-colorpicker-bar-layer-3', e).hide();
 						$('.ui-colorpicker-bar-layer-4', e).hide();
 						break;
 
 					case 'r':
-						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 -1560px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 -1300px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-3', e).css({'background-position': '0 -780px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-4', e).css({'background-position': '0 -1040px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 '+(-step*6)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 '+(-step*5)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-3', e).css({'background-position': '0 '+(-step*3)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-4', e).css({'background-position': '0 '+(-step*4)+'px', 'opacity': ''}).show();
 						break;
 
 					case 'g':
-						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 -2600px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 -2340px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-3', e).css({'background-position': '0 -1820px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-4', e).css({'background-position': '0 -2080px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 '+(-step*10)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 '+(-step*9)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-3', e).css({'background-position': '0 '+(-step*7)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-4', e).css({'background-position': '0 '+(-step*8)+'px', 'opacity': ''}).show();
 						break;
 
 					case 'b':
-						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 -3640px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 -3380px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-3', e).css({'background-position': '0 -2860px', 'opacity': ''}).show();
-						$('.ui-colorpicker-bar-layer-4', e).css({'background-position': '0 -3120px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-1', e).css({'background-position': '0 '+(-step*14)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-2', e).css({'background-position': '0 '+(-step*13)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-3', e).css({'background-position': '0 '+(-step*11)+'px', 'opacity': ''}).show();
+						$('.ui-colorpicker-bar-layer-4', e).css({'background-position': '0 '+(-step*12)+'px', 'opacity': ''}).show();
 						break;
 
 					case 'a':
@@ -909,12 +977,12 @@
 					case 's':
 						y = (1 - inst.color.getHSV().s) * div.height();
 						$('.ui-colorpicker-bar-layer-2', e).css('opacity', 1 - inst.color.getHSV().v);
-						$(e).css('background-color', inst.color.copy().normalize().toCSS());
+						$(e).css('background-color', inst.color.copy().setHSV(null, 1, null).toCSS());
 						break;
 
 					case 'v':
 						y = (1 - inst.color.getHSV().v) * div.height();
-						$(e).css('background-color', inst.color.copy().normalize().toCSS());
+						$(e).css('background-color', inst.color.copy().setHSV(null, null, 1).toCSS());
 						break;
 
 					case 'r':
@@ -975,7 +1043,7 @@
 
 					$('.ui-colorpicker-preview-initial', e).click(function () {
 						inst.color = inst.currentColor.copy();
-						inst._change(inst.color.set);
+						inst._change();
 					});
 				};
 
@@ -1041,7 +1109,7 @@
 					$.each(hsv, function (index, value) {
 						var input = $('.ui-colorpicker-hsv-' + index + ' .ui-colorpicker-number', e);
 						value = Math.round(value);
-						if (parseInt(input.val()) !== value) {
+						if (parseInt(input.val(), 10) !== value) {
 							input.val(value);
 						}
 					});
@@ -1096,7 +1164,7 @@
 					$.each(inst.color.getRGB(), function (index, value) {
 						var input = $('.ui-colorpicker-rgb-' + index + ' .ui-colorpicker-number', e);
 						value = Math.floor(value * 255);
-						if (parseInt(input.val()) !== value) {
+						if (parseInt(input.val(), 10) !== value) {
 							input.val(value);
 						}
 					});
@@ -1149,7 +1217,7 @@
 					$.each(lab, function (index, value) {
 						var input = $('.ui-colorpicker-lab-' + index + ' .ui-colorpicker-number', part);
 						value = Math.round(value);
-						if (parseInt(input.val()) !== value) {
+						if (parseInt(input.val(), 10) !== value) {
 							input.val(value);
 						}
 					});
@@ -1194,7 +1262,7 @@
 					$.each(inst.color.getCMYK(), function (index, value) {
 						var input = $('.ui-colorpicker-cmyk-' + index + ' .ui-colorpicker-number', part);
 						value = Math.round(value * 100);
-						if (parseInt(input.val()) !== value) {
+						if (parseInt(input.val(), 10, 10) !== value) {
 							input.val(value);
 						}
 					});
@@ -1244,7 +1312,7 @@
 				this.repaint = function () {
 					var input = $('.ui-colorpicker-a .ui-colorpicker-number', e),
 						value = Math.round(inst.color.getAlpha() * 100);
-					if (parseInt(input.val()) !== value) {
+					if (parseInt(input.val(), 10) !== value) {
 						input.val(value);
 					}
 				};
@@ -1316,7 +1384,7 @@
 					html = function () {
 						var html = '';
 
-						$.each(inst._getSwatches(), function (name, color) {
+						inst._eachSwatch(function (name, color) {
 							var c = new $.colorpicker.Color(color.r, color.g, color.b),
 								css = c.toCSS();
 							html += '<div class="ui-colorpicker-swatch" style="background-color:' + css + '" title="' + name + '"></div>';
@@ -1329,7 +1397,7 @@
 					part = $(html()).appendTo($('.ui-colorpicker-swatches-container', inst.dialog));
 
 					$('.ui-colorpicker-swatch', part).click(function () {
-						inst.color	= inst._parseColor($(this).css('background-color'));
+						inst.color	= inst._parseColor($(this).css('background-color')) || new $.colorpicker.Color();
 						inst._change();
 					});
 				};
@@ -1386,7 +1454,8 @@
 					});
 
 					$('#'+id_none, part).click(function () {
-						inst._change(false);
+						inst.color.set = false;
+						inst._change();
 					});
 
 					$('#'+id_transparent, part).click(function () {
@@ -1398,7 +1467,7 @@
 				this.repaint = function () {
 					if (!inst.color.set) {
 						$('.ui-colorpicker-special-none', part).attr('checked', true).button( "refresh" );
-					} else if (inst.color.getAlpha() == 0) {
+					} else if (inst.color.getAlpha() === 0) {
 						$('.ui-colorpicker-special-transparent', part).attr('checked', true).button( "refresh" );
 					} else {
 						$('input', part).attr('checked', false).button( "refresh" );
@@ -1431,7 +1500,8 @@
 					return Math.max(0, Math.min(v, 1));
 				},
 				_hexify = function (number) {
-					var digits = '0123456789abcdef',
+					var number = Math.round(number),
+						digits = '0123456789abcdef',
 						lsd = number % 16,
 						msd = (number - lsd) / 16,
 						hexified = digits.charAt(msd) + digits.charAt(lsd);
@@ -1693,7 +1763,7 @@
 						K = cmy.y;
 					}
 
-					if (K == 1) {
+					if (K === 1) {
 						return {
 							c: 0,
 							m: 0,
@@ -1723,6 +1793,7 @@
 				if (_a !== null) {
 					a = _clip(_a);
 				}
+				this.set = true;
 
 				return this;
 			};
@@ -1742,6 +1813,7 @@
 				if (b !== null) {
 					spaces.rgb.b = _clip(b);
 				}
+				this.set = true;
 
 				return this;
 			};
@@ -1757,6 +1829,7 @@
 				if (v !== null)	{
 					spaces.hsv.v = _clip(v);
 				}
+				this.set = true;
 
 				return this;
 			};
@@ -1772,6 +1845,7 @@
 				if (l !== null) {
 					spaces.hsl.l = _clip(l);
 				}
+				this.set = true;
 
 				return this;
 			};
@@ -1787,6 +1861,7 @@
 				if (b !== null) {
 					spaces.lab.b = _clip(b);
 				}
+				this.set = true;
 
 				return this;
 			};
@@ -1805,6 +1880,7 @@
 				if (k !== null) {
 					spaces.cmyk.k = _clip(k);
 				}
+				this.set = true;
 
 				return this;
 			};
@@ -1903,11 +1979,6 @@
 				return $.extend(true, {}, spaces);
 			};
 
-			this.setSpaces = function(new_spaces) {
-				spaces = new_spaces;
-				return this;
-			};
-
 			this.distance = function(color) {
 				var space	= 'lab',
 					getter	= 'get'+space.toUpperCase(),
@@ -1924,13 +1995,16 @@
 			};
 
 			this.equals = function(color) {
-				var a = this.getRGB(),
-					b = color.getRGB();
+				if (color) {
+					var a = this.getRGB(),
+						b = color.getRGB();
 
-				return this.getAlpha() === color.getAlpha()
-					&& a.r === b.r
-					&& a.g === b.g
-					&& a.b === b.b;
+					return this.getAlpha() === color.getAlpha()
+						&& a.r === b.r
+						&& a.g === b.g
+						&& a.b === b.b;
+				}
+				return false;
 			};
 
 			this.limit = function(steps) {
@@ -1952,11 +2026,6 @@
 				return '#' + this.toHex();
 			};
 
-			this.normalize = function() {
-				this.setHSV(null, 1, 1);
-				return this;
-			};
-
 			this.copy = function() {
 				var color = new $.colorpicker.Color(this.getSpaces(), this.getAlpha());
 				color.set = this.set;
@@ -1965,7 +2034,7 @@
 
 			// Construct
 			if (args.length === 2) {
-				this.setSpaces(args[0]);
+				spaces = args[0];
 				this.setAlpha(args[1] === 0 ? 0 : args[1] || 1);
 				this.set = true;
 			}
@@ -1975,7 +2044,7 @@
 				this.set = true;
 			}
 		};
-	};
+	}();
 
 	$.widget("vanderlee.colorpicker", {
 		options: {
@@ -1995,6 +2064,7 @@
 			color:				'#00FF00',	// Initial color (for inline only)
 			colorFormat:		'HEX',		// Format string for output color format
 			draggable:			true,		// Make popup dialog draggable if header is visible.
+			containment:		null,		// Constrains dragging to within the bounds of the specified element or region.
 			duration:			'fast',
 			hsv:				true,		// Show HSV controls and modes
 			inline:				true,		// Show any divs as inline by default
@@ -2014,7 +2084,13 @@
 			limit:				'',			// Limit color "resolution": '', 'websafe', 'nibble', 'binary', 'name'
 			modal:				false,		// Modal dialog?
 			mode:				'h',		// Initial editing mode, h, s, v, r, g, b or a
+			okOnEnter:			false,		// Close (with OK) when pressing the enter key
 			parts:				'',			// leave empty for automatic selection
+			part: {
+				map:		{ size: 256 },
+				bar:		{ size: 256 }
+			},			// options per part
+			position:			null,
 			regional:			'',
 			revert:				false,		// Revert color upon non
 			rgb:				true,		// Show RGB controls and modes
@@ -2031,11 +2107,11 @@
 			cancel:             null,
             close:              null,
 			init:				null,
-			select:             null,
             ok:                 null,
-			open:               null
+			open:               null,
+			select:             null
 		},
-
+		
 		_create: function () {
 			var that = this,
 				text;
@@ -2053,58 +2129,19 @@
 			that.button		= null;
 			that.image		= null;
 			that.overlay	= null;
+			
+			that.events = {
+				window_resize:			null,
+				document_keydown:		null,
+				document_click_html:	null
+			};
 
 			that.mode		= that.options.mode;
+
 			if (that.element.is('input') || that.options.inline === false) {
+				// Initial color
 				that._setColor(that.element.is('input') ? that.element.val() : that.options.color);
-
-				this._callback('init');
-
-				$('body').append(_container_popup);
-				that.dialog = $('.ui-colorpicker:last');
-
-				// Close on clicking outside window and controls
-				$(document).delegate('html', 'touchstart click', function (event) {
-					if (!that.opened || event.target === that.element[0] || that.overlay) {
-						return;
-					}
-
-					// Check if clicked on any part of dialog
-					if (that.dialog.is(event.target) || that.dialog.has(event.target).length > 0) {
-						that.element.blur();	// inside window!
-						return;
-					}
-
-					// Check if clicked on known external elements
-					var p,
-						parents = $(event.target).parents();
-                    // add the event.target in case of buttonImageOnly and closeOnOutside both are set to true
-                    parents.push(event.target);
-					for (p = 0; p <= parents.length; ++p) {
-						// button
-						if (that.button !== null && parents[p] === that.button[0]) {
-							return;
-						}
-						// showOn alt
-						if (/\balt|both\b/.test(that.options.showOn) && $(that.options.altField).is(parents[p])) {
-							return;
-						}
-					}
-
-					// no closeOnOutside
-					if (!that.options.closeOnOutside) {
-						return;
-					}
-
-					that.close(that.options.revert);
-				});
-
-				// close on ESC key
-				$(document).keydown(function (event) {
-					if (event.keyCode == 27 && that.opened && that.options.closeOnEscape) {
-						that.close(that.options.revert);
-					}
-				});
+				that._callback('init');
 
 				// showOn focus
 				if (/\bfocus|both\b/.test(that.options.showOn)) {
@@ -2158,26 +2195,10 @@
 				if (that.options.autoOpen) {
 					that.open();
 				}
-
-				that.element.keydown(function (event) {
-					if (event.keyCode === 9) {
-						that.close();
-					}
-				}).keyup(function (event) {
-					var color = that._parseColor(that.element.val());
-					if (!that.color.equals(color)) {
-						that.color = color;
-						that._change();
-					}
-				});
 			} else {
 				that.inline = true;
 
-				$(this.element).html(that.options.inlineFrame ? _container_inlineFrame : _container_inline);
-				that.dialog = $('.ui-colorpicker', this.element);
-
 				that._generate();
-
 				that.opened = true;
 			}
 
@@ -2219,6 +2240,8 @@
 					property = $.trim(properties[index]);
 					switch (property) {
 						case 'color':
+						case 'fill':
+						case 'stroke':
 						case 'background-color':
 						case 'backgroundColor':
 						case 'outline-color':
@@ -2235,7 +2258,7 @@
 		},
 
 		_setColor: function(text) {
-			this.color			= this._parseColor(text);
+			this.color			= this._parseColor(text) || new $.colorpicker.Color();
 			this.currentColor	= this.color.copy();
 
 			this._setImageBackground();
@@ -2244,7 +2267,90 @@
 
 		setColor: function(text) {
 			this._setColor(text);
-			this._change(this.color.set);
+			this._change();
+		},
+
+		getColor: function(format) {
+			return this._formatColor(format || this.options.colorFormat, this.color);
+		},
+
+		_generateInline: function() {
+			var that = this;
+
+			$(that.element).html(that.options.inlineFrame ? _container_inlineFrame : _container_inline);
+
+			that.dialog = $('.ui-colorpicker', that.element);
+		},
+
+		_generatePopup: function() {
+			var that = this;
+
+			that.dialog = $(_container_popup).appendTo('body');
+
+			// Close on clicking outside window and controls
+			if (that.events.document_click_html === null) {
+				$(document).delegate('html', 'touchstart click', that.events.document_click_html = function (event) {
+				if (!that.opened || event.target === that.element[0] || that.overlay) {
+					return;
+				}
+
+				// Check if clicked on any part of dialog
+				if (that.dialog.is(event.target) || that.dialog.has(event.target).length > 0) {
+					that.element.blur();	// inside window!
+					return;
+				}
+
+				// Check if clicked on known external elements
+				var p,
+					parents = $(event.target).parents();
+				// add the event.target in case of buttonImageOnly and closeOnOutside both are set to true
+				parents.push(event.target);
+				for (p = 0; p <= parents.length; ++p) {
+					// button
+					if (that.button !== null && parents[p] === that.button[0]) {
+						return;
+					}
+					// showOn alt
+					if (/\balt|both\b/.test(that.options.showOn) && $(that.options.altField).is(parents[p])) {
+						return;
+					}
+				}
+
+				// no closeOnOutside
+				if (!that.options.closeOnOutside) {
+					return;
+				}
+
+				that.close(that.options.revert);
+			});
+			}
+
+			if (that.events.document_keydown === null) {
+				$(document).bind('keydown', that.events.document_keydown = function (event) {
+				// close on ESC key
+				if (that.opened && event.keyCode === 27 && that.options.closeOnEscape) {
+					that.close(that.options.revert);
+				}
+
+				// OK on Enter key
+				if (that.opened && event.keyCode === 13 && that.options.okOnEnter) {
+					that.close();
+				}
+			});
+			}
+
+			// Close (with OK) on tab key in element
+			that.element.keydown(function (event) {
+				if (event.keyCode === 9) {
+					that.close();
+				}
+			}).keyup(function (event) {
+				var color = that._parseColor(that.element.val());
+				if (color && !that.color.equals(color)) {
+					that.color = color;
+					that._change();
+				}
+			});
 		},
 
 		_generate: function () {
@@ -2252,9 +2358,13 @@
 				index,
 				part,
 				parts_list,
-				layout_parts;
+				layout_parts,
+				table,
+				classes;
 
 			that._setColor(that.inline || !that.element.is('input') ? that.options.color : that.element.val());
+
+			that[that.inline ? '_generateInline' : '_generatePopup']();
 
 			// Determine the parts to include in this colorpicker
 			if (typeof that.options.parts === 'string') {
@@ -2288,8 +2398,8 @@
 					}
 				});
 
-				var table = $(_layoutTable(layout_parts, function(cell, x, y) {
-					var classes = ['ui-colorpicker-' + cell.part + '-container'];
+				table = $(_layoutTable(layout_parts, function(cell, x, y) {
+					classes = ['ui-colorpicker-' + cell.part + '-container'];
 
 					if (x > 0) {
 						classes.push('ui-colorpicker-padding-left');
@@ -2338,63 +2448,89 @@
 		_effectHide: function(element, callback) {
 			this._effectGeneric(element, 'hide', 'slideUp', 'fadeOut', callback);
 		},
-
+				
 		open: function() {
 			var that = this,
 				offset,
-				bottom,
-				right,
-				height,
-				width,
-				x,
-				y,
-				zIndex;
+				bottom, right,
+				height, width,
+				x, y,
+				zIndex,
+				element,
+				position;
 
 			if (!that.opened) {
 				that._generate();
-
+				
 				if (that.element.is(':hidden')) {
-					var hiddenPlaceholder = $('<div/>').insertBefore(that.element);
-					offset	= hiddenPlaceholder.offset();
-					hiddenPlaceholder.remove();
+					element = $('<div/>').insertBefore(that.element);
 				} else {
-					offset	= that.element.offset();
+					element = that.element;
 				}
-				bottom	= $(window).height() + $(window).scrollTop();
-				right	= $(window).width() + $(window).scrollLeft();
-				height	= that.dialog.outerHeight();
-				width	= that.dialog.outerWidth();
-				x		= offset.left;
-				y		= offset.top + that.element.outerHeight();
-
-				if (x + width > right) {
-					x = Math.max(0, right - width);
-				}
-
-				if (y + height > bottom) {
-					if (offset.top - height >= $(window).scrollTop()) {
-						y = offset.top - height;
-					} else {
-						y = Math.max(0, bottom - height);
+				
+				if (that.options.position) {
+					position = $.extend({}, that.options.position);
+					if (position.of === 'element') {
+						position.of = element;
 					}
+				} else {					
+					position = {
+						my:			'left top',
+						at:			'left bottom',
+						of:			element,
+						collision:	'flip'
+					};
 				}
-
-				that.dialog.css({'left': x, 'top': y});
-
+				
+				that.dialog.position(position);				
+				
+				if (that.element.is(':hidden')) {
+					element.remove();
+				}
+				
 				// Automatically find highest z-index.
 				zIndex = 0;
 				$(that.element[0]).parents().each(function() {
 					var z = $(this).css('z-index');
 					if ((typeof(z) === 'number' || typeof(z) === 'string') && z !== '' && !isNaN(z)) {
-						zIndex = parseInt(z);
-						return false;
+						if (z > zIndex) {
+							zIndex = parseInt(z, 10);
+							return false;
+						}
+					}
+					else {
+						$(this).siblings().each(function() {
+							var z = $(this).css('z-index');
+							if ((typeof(z) === 'number' || typeof(z) === 'string') && z !== '' && !isNaN(z)) {
+								if (z > zIndex) {
+									zIndex = parseInt(z, 10);
+								}
+							}
+						});
 					}
 				});
 
-				//@todo zIndexOffset option, to raise above other elements?
-				that.dialog.css('z-index', zIndex += 2);
+				// @todo zIndexOffset option, to raise above other elements?
+				zIndex += 2;
+				that.dialog.css('z-index', zIndex);
+								
+				if (that.options.modal) {
+					that.overlay = $('<div class="ui-widget-overlay"></div>').appendTo('body').css('z-index', zIndex - 1);										
 
-				that.overlay = that.options.modal ? new $.ui.dialog.overlay(that) : null;
+					if (that.events.window_resize !== null) {
+						$(window).unbind('resize', that.events.window_resize);					
+					}
+					
+					that.events.window_resize = function() {
+						if (that.overlay) {
+							that.overlay.width($(document).width());
+							that.overlay.height($(document).height());					
+						}
+					},
+															
+					$(window).bind('resize', that.events.window_resize);
+					that.events.window_resize();			
+				}
 
 				that._effectShow(this.dialog);
 				that.opened = true;
@@ -2413,7 +2549,7 @@
 
             if (cancel) {
 				that.color = that.currentColor.copy();
-                that._change(that.color.set);
+                that._change();
                 that._callback('cancel', true);
             } else {
 				that.currentColor	= that.color.copy();
@@ -2421,37 +2557,51 @@
             }
 			that.changed		= false;
 
+			if (that.overlay) {
+				$(window).unbind('resize', that.events.window_resize);					
+				that.overlay.remove();
+			}
+			
 			// tear down the interface
 			that._effectHide(that.dialog, function () {
-				that.dialog.empty();
+				that.dialog.remove();
+				that.dialog	= null;
 				that.generated	= false;
 
 				that.opened		= false;
 				that._callback('close', true);
 			});
-
-			if (that.overlay) {
-				that.overlay.destroy();
-			}
 		},
 
 		destroy: function() {
+			if (that.events.document_click_html !== null) {
+				$(document).undelegate('html', 'touchstart click', that.events.document_click_html);
+			}
+			
+			if (that.events.document_keydown !== null) {
+				$(document).unbind('keydown', that.events.document_keydown);
+			}
+			
+			if (that.events.resizeOverlay !== null) {
+				$(window).unbind('resize', that.events.resizeOverlay);					
+			}			
+			
 			this.element.unbind();
 
+			if (this.overlay) {
+				this.overlay.remove();
+			}
+			
+			if (this.dialog !== null) {
+				this.dialog.remove();
+			}
+			
 			if (this.image !== null) {
 				this.image.remove();
 			}
 
 			if (this.button !== null) {
 				this.button.remove();
-			}
-
-			if (this.dialog !== null) {
-				this.dialog.remove();
-			}
-
-			if (this.overlay) {
-				this.overlay.destroy();
 			}
 		},
 
@@ -2462,7 +2612,8 @@
 
 			if (that.color.set) {
 				data = {
-					formatted: that._formatColor(that.options.colorFormat, that.color)
+					formatted: that._formatColor(that.options.colorFormat, that.color),
+					colorPicker: that
 				};
 
 				lab = that.color.getLAB();
@@ -2481,7 +2632,8 @@
 				return that._trigger(callback, null, data);
 			} else {
 				return that._trigger(callback, null, {
-					formatted: ''
+					formatted: '',
+					colorPicker: that
 				});
 			}
 		},
@@ -2510,9 +2662,7 @@
 			});
 		},
 
-		_change: function (set /* = true */) {
-			this.color.set = (set !== false);
-
+		_change: function () {
 			this.changed = true;
 
 			// Limit color palette
@@ -2572,57 +2722,163 @@
 			}
 
 			if ($.isPlainObject(this.options.swatches)) {
-				return $.colorpicker.swatches;
+				return this.colorpicker.swatches;
 			}
 
 			return $.colorpicker.swatches.html;
 		},
 
+		_eachSwatch: function (callback) {
+			var currentSwatches = this._getSwatches(),
+				name;
+			$.each(currentSwatches, function (nameOrIndex, swatch) {
+				name = $.isArray(currentSwatches) ? swatch.name : nameOrIndex;
+				return callback(name, swatch);
+			});
+		},
+
 		_getSwatch: function(name) {
-			var swatches = this._getSwatches(),
-				swatch = false;
+			var swatch = false;
 
-			if (swatches[name] !== undefined) {
-				return swatches[name];
-			}
-
-			$.each(swatches, function(swatchName, current) {
+			this._eachSwatch(function(swatchName, current) {
 				if (swatchName.toLowerCase() == name.toLowerCase()) {
 					swatch = current;
 					return false;
 				}
-				return true;
 			});
 
 			return swatch;
         },
+		
+		_parseFormat: function(format, text) {
+			var that = this,
+				typeRegexps = {
+					x:	function() {return '([0-9a-fA-F]{2})';}
+				,	d:	function() {return '([12]?[0-9]{1,2})';}
+				,	f:	function() {return '([0-9]*\\.?[0-9]*)';}	//@todo proper FP-regex: 0, 0., 0.123, .123
+				,	p:	function() {return '([0-9]*\\.?[0-9]*)';}	//@todo as above
+				},
+				typeConverters = {
+					x:	function(v)	{return parseInt(v, 16);}
+				,	d:	function(v)	{return v / 255.;}
+				,	f:	function(v)	{return v;}
+				,	p:	function(v)	{return v * 0.01;}
+				},
+				setters = {
+					r:	'setRGB'
+				,	g:	'setRGB'
+				,	b:	'setRGB'
+				,	h:	'setHSV'
+				,	s:	'setHSV'
+				,	v:	'setHSV'
+				,	c:	'setCMYK'
+				,	m:	'setCMYK'
+				,	y:	'setCMYK'
+				,	k:	'setCMYK'
+				,	L:	'setLAB'
+				,	A:	'setLAB'
+				,	B:	'setLAB'
+				},
+				setterChannels = {
+					setRGB:		[ 'r', 'g', 'b']
+				,	setHSV:		[ 'h', 's', 'v' ]
+				,	setCMYK:	[ 'c', 'm', 'y', 'k' ]
+				,	setLAB:		[ 'L', 'A', 'B' ]
+				},
+				channels = [],
+				converters = [],						
+				setter = null,
+				color,
+				pattern;
 
-        _parseColor: function(color) {
+			// Construct pattern
+			pattern = format.replace(/[()\\^$.|?*+[\]]/g, function(m) {
+				return '\\'+m;
+			});
+
+			pattern = pattern.replace(/\\?[argbhsvcmykLAB][xdfp]/g, function(variable) {
+				if (variable.match(/^\\/)) {
+					return variable.slice(1);
+				}
+
+				var channel = variable.charAt(0),
+					type = variable.charAt(1);
+
+				channels.push(channel);
+				converters.push(typeConverters[type]);
+				if (setters[channel]) {
+					setter = setters[channel];
+				}
+
+				return typeRegexps[type]();
+			});
+
+			if (setter) {
+				var values = text.match(new RegExp(pattern));
+				if (values) {
+					var args = [],
+						channelIndex;
+					
+					values.shift();
+									
+					$.each(setterChannels[setter], function(index, channel) {
+						channelIndex = $.inArray(channel, channels);
+						args[index] = converters[channelIndex](values[channelIndex]);
+					});
+
+					color = new $.colorpicker.Color();
+					color[setter].apply(color, args);
+				}
+			}
+			
+			return color;
+		},
+
+        _parseColor: function(text) {
             var that = this,
-				c;
-
-			$.each($.colorpicker.parsers, function(name, parser) {
-				if (c = parser(color, that)) {
+				color;
+		
+			var formats = $.isArray(that.options.colorFormat)
+					? that.options.colorFormat
+					: [ that.options.colorFormat ];
+			
+			$.each(formats, function(index, format) {
+				if ($.colorpicker.parsers[format]) {
+					color = $.colorpicker.parsers[format](text, that);
+				} else {
+					color = that._parseFormat(format, text);
+				}
+			
+				if (color) {
 					return false;
 				}
 			});
-
-			if (c) {
-				return c;
+			
+			if (!color) {
+				// fallback; check all registered parsers
+				$.each($.colorpicker.parsers, function(name, parser) {
+					color = parser(text, that);
+					if (color) {
+						return false;
+					}
+				});
 			}
 
-			return new $.colorpicker.Color();
+			if (color) {
+				return color;
+			}
+
+			return false;
         },
 
 		_exactName: function(color) {
 			var name	= false;
 
-			$.each(this._getSwatches(), function(n, swatch) {
+			this._eachSwatch(function(n, swatch) {
 				if (color.equals(new $.colorpicker.Color(swatch.r, swatch.g, swatch.b))) {
 					name = n;
 					return false;
 				}
-				return true;
 			});
 
 			return name;
@@ -2634,28 +2890,27 @@
 				name		= false,
 				d;
 
-			$.each(this._getSwatches(), function(n, swatch) {
+			this._eachSwatch(function(n, swatch) {
 				d = color.distance(new $.colorpicker.Color(swatch.r, swatch.g, swatch.b));
 				if (d < distance || distance === null) {
 					name = n;
-					if (d == 0) {
+					if (d <= 1e-20) {	// effectively 0 by maximum rounding error
 						return false;	// can't get much closer than 0
 					}
-					distance = d;
+					distance = d;	// safety net
 				}
-				return true;
 			});
 
 			return name;
 		},
 
-		_formatColor: function (formats, color) {
+		_formatColor: function (formats, color) {			
 			var that		= this,
 				text		= null,
 				types		= {	'x':	function(v) {return _intToHex(v * 255);}
 							,	'd':	function(v) {return Math.floor(v * 255);}
 							,	'f':	function(v) {return v;}
-							,	'p':	function(v) {return v * 100;}
+							,	'p':	function(v) {return v * 100.;}
 							},
 				channels	= color.getChannels();
 
@@ -2665,7 +2920,7 @@
 
 			$.each(formats, function(index, format) {
 				if ($.colorpicker.writers[format]) {
-					text = $.colorpicker.writers[format](color, that);
+					text = $.colorpicker.writers[format](color, that);		
 					return (text === false);
 				} else {
 					text = format.replace(/\\?[argbhsvcmykLAB][xdfp]/g, function(m) {
@@ -2677,7 +2932,7 @@
 					return false;
 				}
 			});
-
+			
 			return text;
 		}
 	});

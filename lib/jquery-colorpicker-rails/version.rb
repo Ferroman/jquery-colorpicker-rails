@@ -1,7 +1,7 @@
 module Jquery
   module Colorpicker
     module Rails
-      VERSION = "1.0.5.0"
+      VERSION = "1.0.16.0"
     end
   end
 end

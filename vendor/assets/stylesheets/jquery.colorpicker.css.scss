@@ -93,6 +93,17 @@
 	background:				asset_url("map.png") no-repeat;
 }
 
+.ui-colorpicker-map-128,
+.ui-colorpicker-map-128 > * {
+  width:					128px;
+  height:					128px;
+}
+
+.ui-colorpicker-map-128 .ui-colorpicker-map-layer-1,
+.ui-colorpicker-map-128 .ui-colorpicker-map-layer-2 {
+  background:				asset_url("128/map.png") no-repeat;
+}
+
 .ui-colorpicker-map-layer-alpha {
 	background:				asset_url("map-opacity.png");
 }
@@ -114,11 +125,23 @@
     background-repeat:		repeat-x;
 }
 
+.ui-colorpicker-bar-128,
+.ui-colorpicker-bar-128 > * {
+  height:					128px;
+}
+
 .ui-colorpicker-bar-layer-1,
 .ui-colorpicker-bar-layer-2,
 .ui-colorpicker-bar-layer-3,
 .ui-colorpicker-bar-layer-4 {
 	background:				asset_url("bar.png") repeat-x;
+}
+
+.ui-colorpicker-bar-128 .ui-colorpicker-bar-layer-1,
+.ui-colorpicker-bar-128 .ui-colorpicker-bar-layer-2,
+.ui-colorpicker-bar-128 .ui-colorpicker-bar-layer-3,
+.ui-colorpicker-bar-128 .ui-colorpicker-bar-layer-4 {
+  background:				asset_url("128/bar.png") repeat-x;
 }
 
 .ui-colorpicker-bar-layer-alpha {
@@ -127,6 +150,10 @@
 
 .ui-colorpicker-bar-layer-alphabar {
 	background:				asset_url("bar-alpha.png");
+}
+
+.ui-colorpicker-bar-128 .ui-colorpicker-bar-layer-alphabar {
+  background:				asset_url("128/bar-alpha.png");
 }
 
 .ui-colorpicker-bar-pointer {
